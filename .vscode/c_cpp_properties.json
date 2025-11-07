@@ -1,0 +1,53 @@
+{  
+    "env": {
+        "LWIPIncPath": [
+            "${workspaceFolder}/lwip/src/include/lwip",
+            "${workspaceFolder}/lwip"
+        ],
+        "FREERTOSIncPath": [
+            "${workspaceFolder}/FreeRTOS/Source/include",
+            "${workspaceFolder}/FreeRTOS",
+            "${workspaceFolder}/FreeRTOS/Source/CMSIS_RTOS",
+            "${workspaceFolder}/FreeRTOS/Source/portable/GCC/ARM_CM4F" 
+        ],
+        "CoreIncPath": [
+            "${workspaceFolder}/Core/Inc"
+        ],
+        "Open62541Path": [
+            "${workspaceFolder}/open62541"
+        ]
+    },
+
+    "configurations": [
+        {
+            "name": "STM32",
+            "compilerPath": "arm-none-eabi-gcc",
+            "includePath": [
+                "${FREERTOSIncPath}",
+                "${LWIPIncPath}",
+                "${CoreIncPath}",
+                "${Open62541Path}",
+                "${workspaceRoot}/**"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "defines": [
+                "STM32F407xx",
+                "USE_HAL_DRIVER",
+                "USE_FULL_LL_DRIVER",
+                "_RTE_",
+                "DEBUG_MODE",
+               // "USE_CMSIS_RTOS",
+                "RUN_TCP_SERVER",
+                "UA_ARCHITECTURE_FREERTOSLWIP",
+                //"OPEN62541_FEERTOS_USE_OWN_MEM",
+                "USE_FULL_ASSERT"
+            ]
+        }
+    ],
+    "version": 4
+}

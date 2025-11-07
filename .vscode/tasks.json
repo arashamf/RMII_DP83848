@@ -1,0 +1,50 @@
+{
+    "version": "2.0.0",
+    "tasks": 
+    [
+        {
+            "label": "build example_app",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "args": [
+                "-j9"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "command": "make"
+        },
+
+        {
+            "label": "write_mk",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "write"
+            ],
+            "problemMatcher": []
+        },
+
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "color": "#8bff97",
+                    "label": "$(code)clean",
+                    "detail": "Build"
+                }
+            },
+            "problemMatcher": []
+        }
+    ]
+}
