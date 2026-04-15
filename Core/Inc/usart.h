@@ -37,8 +37,8 @@ extern "C" {
 /* USER CODE END Private defines */
 
 void MX_USART6_UART_Init(void);
-
 /* USER CODE BEGIN Prototypes */
+void RS485_UART_Init(void);
 #ifdef DEBUG_MODE 
 void DBG_USART_Init(void);
 void dbg_putStr (const char *);

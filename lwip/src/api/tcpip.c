@@ -452,6 +452,14 @@ tcpip_send_msg_wait_sem(tcpip_callback_fn fn, void *apimsg, sys_sem_t *sem)
   TCPIP_MSG_VAR_REF(msg).type = TCPIP_MSG_API;
   TCPIP_MSG_VAR_REF(msg).msg.api_msg.function = fn;
   TCPIP_MSG_VAR_REF(msg).msg.api_msg.msg = apimsg;
+
+  #if defined OPEN62541_FEERTOS_USE_OWN_MEM && DEBUG_MODE
+  #include "usart.h"
+  sprintf (dbg_buf, "opcua_task; free_heap=%u\r\n", xPortGetFreeHeapSize());
+  dbg_putStr (dbg_buf);
+  #endif
+
+
   sys_mbox_post(&tcpip_mbox, &TCPIP_MSG_VAR_REF(msg));
   sys_arch_sem_wait(sem, 0);
   TCPIP_MSG_VAR_FREE(msg);

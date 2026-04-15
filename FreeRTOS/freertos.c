@@ -147,7 +147,6 @@ void vApplicationMallocFailedHook(){
     sprintf (dbg_buf, "Memory_heap_error; free_heap=%u\r\n", xPortGetFreeHeapSize());
     dbg_putStr (dbg_buf);
     #endif
-   // dbg_putStr ("heap_memory_error\r\n");
     vTaskDelay(pdMS_TO_TICKS(1000));
   }
 }

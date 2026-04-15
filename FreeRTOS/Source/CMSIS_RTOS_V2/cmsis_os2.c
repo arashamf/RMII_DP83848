@@ -1784,7 +1784,6 @@ osStatus_t osMessageQueuePut (osMessageQueueId_t mq_id, const void *msg_ptr, uin
       }
     }
   }
-
   return (stat);
 }
 

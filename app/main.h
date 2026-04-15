@@ -74,10 +74,16 @@ void Error_Handler(void);
 #define LED2_GPIO_Port GPIOE
 #define LED3_Pin LL_GPIO_PIN_15
 #define LED3_GPIO_Port GPIOE
+#define RS485_DIR_Ctl_Pin         LL_GPIO_PIN_7
+#define RS485_DIR_Ctl_GPIO_Port   GPIOD
+
 
 /* USER CODE BEGIN Private defines */
 #define   ON      1
 #define   OFF     0
+
+#define   TX      1
+#define   RX     0
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

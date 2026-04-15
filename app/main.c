@@ -29,7 +29,9 @@
 #include "task.h"
 #include <stdio.h>
 #include "lwip.h"
+#if defined OPEN62541_FEERTOS_USE_OWN_MEM
 #include "opcua.h"
+#endif
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,13 +110,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   DBG_USART_Init();
-
- // #if defined OPEN62541_FEERTOS_USE_OWN_MEM && DEBUG_MODE
-  #if defined DEBUG_MODE
-  sprintf (dbg_buf, "Start; free_heap=%u\r\n", xPortGetFreeHeapSize());
-  dbg_putStr (dbg_buf);
-  #endif
-
+  RS485_UART_Init();
   xTaskCreate((TaskFunction_t )led_task, (const char*)"led_task", (configSTACK_DEPTH_TYPE)64, (void* )NULL, (UBaseType_t)1,	(TaskHandle_t*)&LEDtask_Handler);
   
   #if defined DEBUG_MODE
@@ -131,7 +127,7 @@ int main(void)
   #endif
 
   #if defined OPEN62541_FEERTOS_USE_OWN_MEM
-  xTaskCreate((TaskFunction_t )opcua_thread, (const char*)"opcua_thread", (configSTACK_DEPTH_TYPE)8192, (void* )NULL, (UBaseType_t)3, 
+  xTaskCreate((TaskFunction_t )opcua_thread, (const char*)"opcua_thread", (configSTACK_DEPTH_TYPE)5000, (void* )NULL, (UBaseType_t)3, 
   (TaskHandle_t*)&OPCUAtask_Handler);
   #if defined DEBUG_MODE
   sprintf (dbg_buf, "free_heap_after_create_opcua_task=%u\r\n", xPortGetFreeHeapSize());
@@ -201,10 +197,11 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void led_task(void *pvParameters)
 {
- // MX_LWIP_Init();
+  #if !defined RUN_TCP_SERVER
+  MX_LWIP_Init();
+  #endif
   leds_init ();
   control_LED (handle_led, ON);
-
 
   for(;;)
   {

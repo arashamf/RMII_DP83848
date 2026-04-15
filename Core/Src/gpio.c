@@ -51,10 +51,8 @@ void MX_GPIO_Init(void)
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
 
-  /**/
   LL_GPIO_ResetOutputPin(GPIOE, LED1_Pin|LED2_Pin|LED3_Pin);
 
-  /**/
   GPIO_InitStruct.Pin = LED1_Pin|LED2_Pin|LED3_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
@@ -66,8 +64,7 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 2 */
 //-----------------------------------------
-void leds_init (void)
-{
+void leds_init (void) {
     leds[green].port = LED1_GPIO_Port;
     leds[green].pin = LED1_Pin;   
     leds[orange].port = LED2_GPIO_Port;
@@ -77,8 +74,26 @@ void leds_init (void)
 }
 
 //-----------------------------------------
-void control_LED (uint8_t number_leds, uint8_t comm)
-{
+void control_LED (uint8_t number_leds, uint8_t comm)  {
   led_ctl(comm, leds[number_leds].port, leds[number_leds].pin);
+}
+
+//-----------------------------------------
+void gpio_RS485_DirCtl_init (void) {
+  LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  GPIO_InitStruct.Pin = LED1_Pin|LED2_Pin|LED3_Pin;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
+  LL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+}
+
+//-----------------------------------------
+void RS485_DirCtl (uint8_t RS485mode)
+{
+  if (RS485mode == TX) {    LL_GPIO_SetOutputPin(RS485_DIR_Ctl_GPIO_Port, RS485_DIR_Ctl_Pin);  }
+  else {    LL_GPIO_ResetOutputPin(RS485_DIR_Ctl_GPIO_Port, RS485_DIR_Ctl_Pin);  }
 }
 /* USER CODE END 2 */

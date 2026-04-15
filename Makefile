@@ -13,7 +13,7 @@
 ######################################
 # target
 ######################################
-TARGET = RMII_Eth
+TARGET = RMII_F407VET6
 
 
 ######################################
@@ -122,10 +122,10 @@ AS_DEFS =
 C_DEFS =  \
 -D STM32F407xx \
 -D USE_HAL_DRIVER \
--D USE_FULL_LL_DRIVER \
--D UA_NAMESPACE_ZERO=MIN \
--D UA_ARCHITECTURE_FREERTOSLWIP \
 -D RUN_TCP_SERVER \
+-D USE_FULL_LL_DRIVER \
+#-D UA_ARCHITECTURE_FREERTOSLWIP \
+#-D UA_NAMESPACE_ZERO=MIN \
 #-D USE_CMSIS_RTOS
 
 ifeq ($(OPEN62541), 1)

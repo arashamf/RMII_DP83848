@@ -23,6 +23,7 @@ CORE_RTOS_SRC  = 	$(FREERTOS_DIR)/freertos.c \
 PORT_RTOS_SRC  =    $(FREERTOS_ARM_CM4_DIR)/port.c \
 					$(FREERTOS_MemMang_DIR)/heap_4.c \
 					$(FREERTOS_PORT_DIR)/cmsis_os.c \
+#					$(FREERTOS_PORT_DIR)/myMalloc.c \
 #					$(FREERTOS_PORT_DIR)/cmsis_os2.c \
 
 # include directories
@@ -30,6 +31,7 @@ INC		+= 	$(FREERTOS_DIR)
 INC 	+= 	$(FREERTOS_INC_DIR)
 INC 	+= 	$(FREERTOS_ARM_CM4_INC_DIR)
 INC 	+= 	$(FREERTOS_PORT_DIR)
+INC 	+= 	$(FREERTOS_MemMang_DIR)
 
 C_SOURCES  	+= 	$(CORE_RTOS_SRC)
 C_SOURCES  	+= 	$(PORT_RTOS_SRC)

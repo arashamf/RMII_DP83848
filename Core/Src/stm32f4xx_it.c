@@ -22,6 +22,7 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "usart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -189,5 +190,12 @@ void ETH_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-
+void USART2_IRQHandler(void)
+{
+  dbg_putStr("usart_irq\r\n");
+  if (LL_USART_IsActiveFlag_RXNE(USART2)) {
+    LL_USART_ClearFlag_RXNE(USART2);
+    dbg_putStr("Usart2_get_byte\r\n");
+  }
+}
 /* USER CODE END 1 */

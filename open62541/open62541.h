@@ -85,7 +85,7 @@
 /* #undef UA_ENABLE_UNIT_TEST_FAILURE_HOOKS */
 /* #undef UA_ENABLE_VALGRIND_INTERACTIVE */
 #define UA_VALGRIND_INTERACTIVE_INTERVAL 1000
-#define UA_GENERATED_NAMESPACE_ZERO
+//#define UA_GENERATED_NAMESPACE_ZERO   
 /* #undef UA_GENERATED_NAMESPACE_ZERO_FULL */
 /* #undef UA_ENABLE_PUBSUB_MONITORING */
 
@@ -146,6 +146,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+//#include "myMalloc.h"
 
 #ifdef BYTE_ORDER
 # undef BYTE_ORDER

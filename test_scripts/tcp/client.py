@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import socket
-SERVER_IP = '192.168.111.197'
+SERVER_IP = '192.168.0.13'
 SERVER_PORT = 1000
 
 conn = socket.socket()

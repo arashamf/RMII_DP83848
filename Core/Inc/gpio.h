@@ -36,7 +36,6 @@ extern "C" {
 //-----------------------------------------------
 typedef struct 
 {
-  // uint32_t port;
     GPIO_TypeDef * port;
     uint32_t pin;
 } leds_t;
@@ -58,6 +57,8 @@ void MX_GPIO_Init(void);
 /* USER CODE BEGIN Prototypes */
 void leds_init (void);
 void control_LED (uint8_t number_leds, uint8_t comm);
+void gpio_RS485_DirCtl_init (void);
+void RS485_DirCtl (uint8_t RS485mode);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

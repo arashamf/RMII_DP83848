@@ -1,4 +1,26 @@
 {
+    "actionButtons": {
+        "defaultColor": "white",
+        "reloadButton": "Reload",
+        "commands": [
+            {
+                "name": "build",
+                "color": "white",
+                "command": "make"
+            },
+            {
+                "name": "flash",
+                "color": "white",
+                "command": "make write"
+            },
+            {
+                "name": "clean",
+                "color": "white",
+                "command": "make clean"
+            },
+            ]
+        },
+
     "files.associations": {
         "stm32f4xx_hal.h": "c",
         "stm32f4xx_hal_cortex.h": "c",
@@ -53,6 +75,7 @@
         "core_cm4.h": "c",
         "cstring": "c",
         "string.h": "c",
-        "cc.h": "c"
+        "cc.h": "c",
+        "netif.h": "c"
     }
 }

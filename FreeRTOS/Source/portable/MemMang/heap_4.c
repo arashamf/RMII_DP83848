@@ -491,7 +491,7 @@ size_t xBlocks = 0, xMaxSize = 0, xMinSize = portMAX_DELAY; /* portMAX_DELAY use
 }
 
 //---------------------------------------------------------------------------------
-void *pvPortCalloc(size_t count, size_t size)
+void * pvPortCalloc(size_t count, size_t size)
 {
 	void *p;
 	p = pvPortMalloc(count * size); //allocate 'count' objects of size 'size' 
@@ -512,52 +512,33 @@ void *pvPortRealloc(void *mem, size_t newsize)
 
 	if (newsize > 0) // if NULL, exit
 	{
-		if (mem != NULL)
-		{
+		if (mem != NULL)	{
 			puc -= xHeapStructSize; // The memory being freed will have an BlockLink_t structure immediately before it.
 			pxLink = (void *)puc; 			// This casting is to keep the compiler from issuing warnings.
-
 			// Check allocate block
-			if ((pxLink->xBlockSize & xBlockAllocatedBit) != 0)
-			{
+			if ((pxLink->xBlockSize & xBlockAllocatedBit) != 0)	{
 				// The block is being returned to the heap - it is no longer allocated.
 				block_size = (pxLink->xBlockSize & ~xBlockAllocatedBit) - xHeapStructSize;
-
-				// Alloco nuovo spazio di memoria
 				pvReturn = pvPortCalloc(1, newsize);
 
-				if (pvReturn != NULL) // Check creation
-				{
+				// Check creation
+				if (pvReturn != NULL) { 
 					if (block_size < newsize)
-					{
-						move_size = block_size;
-					}
+					{	move_size = block_size;	}
 					else
-					{
-						move_size = block_size;
-					}
-
-					// Copio dati nel nuovo spazio di memoria
+					{	move_size = block_size;	}
 					memcpy(pvReturn, mem, move_size);
-
-					// Libero vecchio blocco di memoria
 					vPortFree(mem);
 				}
 			}
 			else
-			{
-				pvReturn = pvPortCalloc(1,newsize);
-			}
+			{	pvReturn = pvPortCalloc(1,newsize);	}
 		}
 		else
-		{
-			pvReturn = pvPortCalloc(1,newsize);
-		}
+		{	pvReturn = pvPortCalloc(1,newsize);	}
 	}
 	else
-	{
-		pvReturn = NULL; // Exit without memory block
-	}
+	{	pvReturn = NULL;	}  // Exit without memory block
 
 	return pvReturn; 	// Exit with memory block
 }
